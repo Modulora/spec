@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "0",
+  "namespace": "North\u0455tar",
+  "name": "calendar",
+  "version": "1.2.0",
+  "framework": "react",
+  "sourceModel": "open-source",
+  "visibility": "public",
+  "owner": {
+    "kind": "organization",
+    "identifier": "northstar-ui"
+  },
+  "source": {
+    "repository": "https://github.com/northstar-ui/components",
+    "commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "shadcnItem": {
+    "url": "https://registry.modulora.dev/r/northstar/calendar/1.2.0/registry-item.json",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "license": {
+    "kind": "spdx",
+    "spdxExpression": "MIT"
+  }
+}

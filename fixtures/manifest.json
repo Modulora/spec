@@ -1,0 +1,78 @@
+{
+  "invalid/attestation-bad-digest.json": {
+    "schema": "attestation",
+    "valid": false
+  },
+  "invalid/evidence-scan-missing-limitations.json": {
+    "schema": "evidence",
+    "valid": false
+  },
+  "invalid/item-bad-version.json": {
+    "schema": "modulora-item",
+    "valid": false
+  },
+  "invalid/item-commercial-without-purchase.json": {
+    "schema": "modulora-item",
+    "valid": false
+  },
+  "invalid/item-missing-owner.json": {
+    "schema": "modulora-item",
+    "valid": false
+  },
+  "invalid/item-open-source-commercial-license.json": {
+    "schema": "modulora-item",
+    "valid": false
+  },
+  "invalid/item-open-source-without-source.json": {
+    "schema": "modulora-item",
+    "valid": false
+  },
+  "invalid/item-unknown-field.json": {
+    "schema": "modulora-item",
+    "valid": false
+  },
+  "malicious/attestation-absolute-path.json": {
+    "schema": "attestation",
+    "valid": false
+  },
+  "malicious/attestation-oversized-files.json": {
+    "schema": "attestation",
+    "valid": false
+  },
+  "malicious/attestation-path-traversal.json": {
+    "schema": "attestation",
+    "valid": false
+  },
+  "malicious/evidence-generic-verified.json": {
+    "schema": "evidence",
+    "valid": false
+  },
+  "malicious/item-confusable-namespace.json": {
+    "schema": "modulora-item",
+    "valid": false
+  },
+  "malicious/item-http-shadcn-url.json": {
+    "schema": "modulora-item",
+    "valid": false
+  },
+  "valid/attestation.json": {
+    "schema": "attestation",
+    "valid": true
+  },
+  "valid/evidence-external-commercial.json": {
+    "schema": "evidence",
+    "valid": true
+  },
+  "valid/evidence-open-source.json": {
+    "schema": "evidence",
+    "valid": true
+  },
+  "valid/item-external-commercial.json": {
+    "schema": "modulora-item",
+    "valid": true
+  },
+  "valid/item-open-source.json": {
+    "schema": "modulora-item",
+    "valid": true
+  }
+}

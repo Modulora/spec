@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "0",
+  "namespace": "northstar",
+  "name": "pro-table",
+  "version": "1.2.0",
+  "framework": "react",
+  "sourceModel": "external-commercial",
+  "visibility": "public",
+  "owner": {
+    "kind": "organization",
+    "identifier": "northstar-ui"
+  },
+  "shadcnItem": {
+    "url": "https://registry.modulora.dev/r/northstar/calendar/1.2.0/registry-item.json",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "license": {
+    "kind": "commercial",
+    "url": "https://northstar.dev/license"
+  },
+  "purchase": {
+    "url": "https://northstar.dev/pro-table",
+    "domain": "northstar.dev",
+    "priceLabel": "$49 one-time"
+  }
+}
