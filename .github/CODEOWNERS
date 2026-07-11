@@ -1,0 +1,8 @@
+* @Modulora/spec
+
+/.github/ @Modulora/spec @Modulora/security
+/rfcs/ @Modulora/spec @Modulora/security
+/schemas/ @Modulora/spec @Modulora/security
+/openapi/ @Modulora/spec @Modulora/security
+/fixtures/malicious/ @Modulora/spec @Modulora/security
+/LICENSE @Modulora/maintainers
