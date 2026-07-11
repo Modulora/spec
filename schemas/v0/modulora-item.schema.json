@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.modulora.dev/schemas/v0/modulora-item.schema.json",
+  "title": "Modulora Companion Item Manifest v0",
+  "description": "Ownership, provenance, source-model, and commerce metadata that accompanies a shadcn-compatible registry item. This document references the canonical shadcn item; it never duplicates it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "namespace",
+    "name",
+    "version",
+    "framework",
+    "sourceModel",
+    "visibility",
+    "owner",
+    "shadcnItem",
+    "license"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "0" },
+    "namespace": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 40,
+      "pattern": "^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?$",
+      "description": "Owner-scoped namespace. Lowercase alphanumerics and single hyphens."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$"
+    },
+    "version": {
+      "type": "string",
+      "maxLength": 64,
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z.-]{1,32})?$",
+      "description": "Immutable release version (SemVer, no build metadata)."
+    },
+    "framework": {
+      "type": "string",
+      "enum": ["react"],
+      "description": "Launch supports React only. Vue and Svelte are future additive values."
+    },
+    "sourceModel": {
+      "type": "string",
+      "enum": ["open-source", "external-commercial", "private-team", "hosted-commercial"]
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["public", "unlisted", "private"]
+    },
+    "owner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "identifier"],
+      "properties": {
+        "kind": { "type": "string", "enum": ["user", "organization"] },
+        "identifier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]{0,98}[A-Za-z0-9])?$"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "commit"],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "maxLength": 300,
+          "pattern": "^https://[a-z0-9.-]+/[A-Za-z0-9._/-]+$"
+        },
+        "commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" }
+      },
+      "description": "Canonical source reference. Required for open-source and private-team items."
+    },
+    "shadcnItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "sha256"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "maxLength": 500,
+          "pattern": "^https://[a-z0-9.-]+/\\S+$"
+        },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      },
+      "description": "Reference to the canonical shadcn registry-item document and its digest."
+    },
+    "license": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": { "type": "string", "enum": ["spdx", "commercial", "custom"] },
+        "spdxExpression": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "url": { "type": "string", "maxLength": 500, "pattern": "^https://\\S+$" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "spdx" } } },
+          "then": { "required": ["spdxExpression"] }
+        }
+      ]
+    },
+    "purchase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "domain"],
+      "properties": {
+        "url": { "type": "string", "maxLength": 500, "pattern": "^https://\\S+$" },
+        "domain": {
+          "type": "string",
+          "maxLength": 253,
+          "pattern": "^(?!-)[a-z0-9-]{1,63}(?<!-)(\\.(?!-)[a-z0-9-]{1,63}(?<!-))+$"
+        },
+        "priceLabel": { "type": "string", "maxLength": 60 }
+      },
+      "description": "Creator-controlled purchase destination. Required for external-commercial items. priceLabel is creator-provided and unverified."
+    },
+    "support": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "url": { "type": "string", "maxLength": 500, "pattern": "^https://\\S+$" },
+        "status": { "type": "string", "enum": ["active", "maintenance", "deprecated"] }
+      }
+    },
+    "deprecation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reason"],
+      "properties": {
+        "reason": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "replacement": { "type": "string", "maxLength": 200 }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "sourceModel": { "const": "external-commercial" } } },
+      "then": { "required": ["purchase"] }
+    },
+    {
+      "if": {
+        "properties": {
+          "sourceModel": { "enum": ["open-source", "private-team"] }
+        }
+      },
+      "then": { "required": ["source"] }
+    },
+    {
+      "if": { "properties": { "sourceModel": { "const": "open-source" } } },
+      "then": {
+        "properties": { "license": { "properties": { "kind": { "const": "spdx" } } } }
+      }
+    }
+  ]
+}

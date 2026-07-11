@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spec.modulora.dev/schemas/v0/evidence.schema.json",
+  "title": "Modulora Trust Evidence v0",
+  "description": "Scoped, timestamped evidence records for one exact release. There is deliberately no generic 'verified' or 'secure' value; every record names what was checked and its limitations.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "itemRef", "releaseDigest", "records"],
+  "properties": {
+    "schemaVersion": { "const": "0" },
+    "itemRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["namespace", "name", "version"],
+      "properties": {
+        "namespace": { "type": "string", "pattern": "^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?$" },
+        "name": { "type": "string", "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$" },
+        "version": {
+          "type": "string",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z.-]{1,32})?$"
+        }
+      }
+    },
+    "releaseDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "status", "issuer", "timestamp"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "owner-verified",
+              "source-linked",
+              "artifact-signed",
+              "secret-scan",
+              "dependency-scan",
+              "license-scan",
+              "static-analysis",
+              "build-checked",
+              "human-reviewed",
+              "source-not-assessed",
+              "deprecated",
+              "revoked"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["passed", "failed", "warning", "asserted", "not-applicable"]
+          },
+          "issuer": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "scope": { "type": "string", "maxLength": 500 },
+          "toolVersion": { "type": "string", "maxLength": 100 },
+          "policyVersion": { "type": "string", "maxLength": 100 },
+          "limitations": {
+            "type": "string",
+            "maxLength": 1000,
+            "description": "What this record does not prove. Strongly recommended for scan and build records."
+          },
+          "detailUrl": { "type": "string", "maxLength": 500, "pattern": "^https://\\S+$" },
+          "supersededBy": { "type": "string", "maxLength": 200 }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "enum": ["secret-scan", "dependency-scan", "license-scan", "static-analysis", "build-checked"]
+                }
+              }
+            },
+            "then": { "required": ["toolVersion", "limitations"] }
+          }
+        ]
+      }
+    }
+  }
+}

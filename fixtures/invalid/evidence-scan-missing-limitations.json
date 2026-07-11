@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "0",
+  "itemRef": {
+    "namespace": "northstar",
+    "name": "calendar",
+    "version": "1.2.0"
+  },
+  "releaseDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "records": [
+    {
+      "type": "secret-scan",
+      "status": "passed",
+      "issuer": "x",
+      "timestamp": "2026-07-11T18:00:10Z",
+      "toolVersion": "g-8"
+    }
+  ]
+}

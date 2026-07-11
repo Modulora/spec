@@ -9,24 +9,24 @@
 
 ## Companion manifest v0
 
-- [ ] Define component identity, namespace, owner, framework, and source model.
-- [ ] Define open-source, external-commercial, private-team, and hosted-commercial states.
-- [ ] Reference—not duplicate—the canonical shadcn install item.
+- [x] Define component identity, namespace, owner, framework, and source model.
+- [x] Define open-source, external-commercial, private-team, and hosted-commercial states.
+- [x] Reference—not duplicate—the canonical shadcn install item.
 - [ ] Define source repository, commit, license expression, and purchase-domain metadata.
-- [ ] Define immutable version and canonical digest rules.
+- [x] Define immutable version and canonical digest rules (draft; canonical vectors pending).
 
 ## Evidence and attestation v0
 
-- [ ] Define owner, source, signature, scan, build, review, and revocation evidence.
-- [ ] Document what every evidence state does and does not prove.
+- [x] Define owner, source, signature, scan, build, review, and revocation evidence.
+- [x] Document what every evidence state does and does not prove (limitations required for scans).
 - [ ] Define canonical JSON serialization and digest scope.
 - [ ] Define signing identity, key version, rotation, revocation, and cutoff semantics.
-- [ ] Define external commercial “Source not assessed” requirements.
+- [x] Define external commercial “Source not assessed” requirements.
 
 ## Conformance
 
-- [ ] Add JSON Schema validation.
-- [ ] Add valid and invalid fixtures.
+- [x] Add JSON Schema validation.
+- [x] Add valid and invalid fixtures.
 - [ ] Add oversized, traversal, Unicode-confusable, symlink, unsafe-target, and secret fixtures.
 - [ ] Generate TypeScript types.
 - [ ] Publish `@modulora/spec` through trusted publishing.

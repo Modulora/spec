@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "0",
+  "itemRef": {
+    "namespace": "northstar",
+    "name": "pro-table",
+    "version": "1.2.0"
+  },
+  "releaseDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "records": [
+    {
+      "type": "owner-verified",
+      "status": "passed",
+      "issuer": "modulora-platform",
+      "timestamp": "2026-07-11T18:00:00Z",
+      "scope": "Domain verification for northstar.dev"
+    },
+    {
+      "type": "source-not-assessed",
+      "status": "asserted",
+      "issuer": "modulora-platform",
+      "timestamp": "2026-07-11T18:00:00Z",
+      "scope": "Commercial source is not available to Modulora and has not been scanned or reviewed."
+    }
+  ]
+}

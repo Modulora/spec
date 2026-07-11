@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "0",
+  "canonicalization": "modulora-json-c14n-0",
+  "itemRef": {
+    "namespace": "northstar",
+    "name": "calendar",
+    "version": "1.2.0"
+  },
+  "releaseDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "sourceCommit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "files": [
+    {
+      "path": "../../.ssh/authorized_keys",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "publisher": {
+    "identity": "github:northstar-ui/justin",
+    "authorizedAt": "2026-07-11T18:00:00Z"
+  },
+  "signature": {
+    "keyId": "modulora-platform-2026-01",
+    "algorithm": "ed25519",
+    "value": "QUJDREVG",
+    "signedAt": "2026-07-11T18:00:05Z"
+  }
+}
