@@ -73,7 +73,8 @@
   },
   "valid/item-open-source.json": {
     "schema": "modulora-item",
-    "valid": true
+    "valid": true,
+    "shadcnFixture": "shadcn/calendar.registry-item.json"
   },
   "valid/item-with-taxonomy.json": {
     "schema": "modulora-item",
@@ -121,5 +122,17 @@
   "invalid/attestation-wrong-signed-payload.json": {
     "schema": "attestation",
     "valid": false
+  },
+  "invalid/item-shadcn-name-mismatch.json": {
+    "schema": "modulora-item",
+    "valid": true,
+    "shadcnFixture": "shadcn/calendar.registry-item.json",
+    "shadcn": false
+  },
+  "invalid/item-shadcn-page-missing-target.json": {
+    "schema": "modulora-item",
+    "valid": true,
+    "shadcnFixture": "shadcn/page-missing-target.registry-item.json",
+    "shadcn": false
   }
 }

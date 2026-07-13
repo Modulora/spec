@@ -111,21 +111,59 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
+        "schema",
+        "name",
+        "type",
         "url",
-        "sha256"
+        "contentCanonicalization",
+        "contentSha256"
       ],
       "properties": {
+        "schema": {
+          "const": "https://ui.shadcn.com/schema/registry-item.json",
+          "description": "Upstream shadcn registry-item schema targeted by the hosted install document."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$",
+          "description": "MUST equal the companion manifest name and the fetched registry-item name."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "registry:lib",
+            "registry:block",
+            "registry:component",
+            "registry:ui",
+            "registry:hook",
+            "registry:theme",
+            "registry:page",
+            "registry:file",
+            "registry:style",
+            "registry:base",
+            "registry:font",
+            "registry:item"
+          ],
+          "description": "MUST equal the fetched registry-item type. Components and blocks remain distinct from taxonomy category/componentType."
+        },
         "url": {
           "type": "string",
           "maxLength": 500,
           "pattern": "^https://[a-z0-9.-]+/\\S+$"
         },
-        "sha256": {
+        "contentCanonicalization": {
+          "const": "modulora-content-v0",
+          "description": "LF-normalized file contents; sorted by path using codepoint order; each pair encoded as <pathLength>:<path>\\n<contentLength>:<content>; pairs joined by LF-NUL-LF."
+        },
+        "contentSha256": {
           "type": "string",
-          "pattern": "^[a-f0-9]{64}$"
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "SHA-256 of the exact install files using modulora-content-v0. This is the same value served as registry-item meta.contentSha256; meta itself is excluded to avoid self-reference."
         }
       },
-      "description": "Reference to the canonical shadcn registry-item document and its digest."
+      "description": "Reference and semantic mapping to the canonical hosted shadcn registry-item. The companion never duplicates dependencies, files, CSS, env vars, docs, or other install payload fields."
     },
     "license": {
       "type": "object",

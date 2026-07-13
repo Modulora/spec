@@ -1,5 +1,6 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { createHash } from "node:crypto";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 
@@ -40,6 +41,34 @@ const validators = Object.fromEntries(
   Object.entries(schemas).map(([name, schema]) => [name, ajv.compile(schema)]),
 );
 
+
+/** Canonical file digest shared by web, CLI, and the hosted /r/ item. */
+function contentDigest(files) {
+  const parts = [...files]
+    .map((file) => ({ path: String(file.path).trim(), content: String(file.content ?? "").replace(/\r\n/g, "\n") }))
+    .sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0))
+    .map((file) => `${file.path.length}:${file.path}\n${file.content.length}:${file.content}`);
+  return createHash("sha256").update(parts.join("\n\0\n"), "utf8").digest("hex");
+}
+
+/** Cross-document contract that JSON Schema cannot express. */
+function shadcnReferenceCheck(companion, item) {
+  const ref = companion.shadcnItem;
+  if (!ref) return "companion has no shadcnItem reference";
+  if (item.$schema !== ref.schema) return `schema mismatch: ${item.$schema} != ${ref.schema}`;
+  if (item.name !== ref.name || companion.name !== ref.name) return "companion/shadcn item name mismatch";
+  if (item.type !== ref.type) return "companion/shadcn item type mismatch";
+  if (!Array.isArray(item.files) || item.files.length === 0) return "shadcn item has no files";
+  for (const file of item.files) {
+    if (!file.path || !file.type) return "every shadcn file requires path and type";
+    if (["registry:page", "registry:file"].includes(file.type) && !file.target) return `${file.type} file requires target`;
+  }
+  const digest = contentDigest(item.files);
+  if (digest !== ref.contentSha256) return `content digest mismatch: ${digest} != ${ref.contentSha256}`;
+  if (item.meta?.contentSha256 !== undefined && item.meta.contentSha256 !== digest) return "registry-item meta.contentSha256 mismatch";
+  return null;
+}
+
 export function runFixtures() {
   const manifest = JSON.parse(readFileSync(join(root, "fixtures/manifest.json"), "utf8"));
   const results = [];
@@ -56,6 +85,15 @@ export function runFixtures() {
       const taxonomyOk = taxonomyError === null;
       pass = taxonomyOk === expectation.taxonomy;
       if (!pass) errors = [taxonomyError ?? "expected a taxonomy failure but resolution succeeded"];
+    }
+    // Optional paired hosted shadcn item: validates semantic fields and content digest.
+    if (pass && expectation.shadcnFixture) {
+      const item = JSON.parse(readFileSync(join(root, "fixtures", expectation.shadcnFixture), "utf8"));
+      const referenceError = shadcnReferenceCheck(doc, item);
+      const referenceOk = referenceError === null;
+      const expectedReference = expectation.shadcn !== false;
+      pass = referenceOk === expectedReference;
+      if (!pass) errors = [referenceError ?? "expected shadcn reference failure but mapping succeeded"];
     }
     results.push({
       fixture: relPath,

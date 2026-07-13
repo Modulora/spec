@@ -15,8 +15,12 @@
     "commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
   },
   "shadcnItem": {
+    "schema": "https://ui.shadcn.com/schema/registry-item.json",
+    "name": "calendar",
+    "type": "registry:component",
     "url": "https://registry.modulora.dev/r/northstar/calendar/1.2.0/registry-item.json",
-    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "contentCanonicalization": "modulora-content-v0",
+    "contentSha256": "0a131f316f3365fb3d34fe0ad0a9fed879bf849422002b938266cbc67f37be8c"
   },
   "license": {
     "kind": "spdx",
