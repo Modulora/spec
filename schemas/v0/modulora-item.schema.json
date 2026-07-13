@@ -18,7 +18,9 @@
     "license"
   ],
   "properties": {
-    "schemaVersion": { "const": "0" },
+    "schemaVersion": {
+      "const": "0"
+    },
     "namespace": {
       "type": "string",
       "minLength": 2,
@@ -40,23 +42,43 @@
     },
     "framework": {
       "type": "string",
-      "enum": ["react"],
+      "enum": [
+        "react"
+      ],
       "description": "Launch supports React only. Vue and Svelte are future additive values."
     },
     "sourceModel": {
       "type": "string",
-      "enum": ["open-source", "external-commercial", "private-team", "hosted-commercial"]
+      "enum": [
+        "open-source",
+        "external-commercial",
+        "private-team",
+        "hosted-commercial"
+      ]
     },
     "visibility": {
       "type": "string",
-      "enum": ["public", "unlisted", "private"]
+      "enum": [
+        "public",
+        "unlisted",
+        "private"
+      ]
     },
     "owner": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["kind", "identifier"],
+      "required": [
+        "kind",
+        "identifier"
+      ],
       "properties": {
-        "kind": { "type": "string", "enum": ["user", "organization"] },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "user",
+            "organization"
+          ]
+        },
         "identifier": {
           "type": "string",
           "minLength": 1,
@@ -68,59 +90,108 @@
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["repository", "commit"],
+      "required": [
+        "repository",
+        "commit"
+      ],
       "properties": {
         "repository": {
           "type": "string",
           "maxLength": 300,
           "pattern": "^https://[a-z0-9.-]+/[A-Za-z0-9._/-]+$"
         },
-        "commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" }
+        "commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        }
       },
       "description": "Canonical source reference. Required for open-source and private-team items."
     },
     "shadcnItem": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["url", "sha256"],
+      "required": [
+        "url",
+        "sha256"
+      ],
       "properties": {
         "url": {
           "type": "string",
           "maxLength": 500,
           "pattern": "^https://[a-z0-9.-]+/\\S+$"
         },
-        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
       },
       "description": "Reference to the canonical shadcn registry-item document and its digest."
     },
     "license": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["kind"],
+      "required": [
+        "kind"
+      ],
       "properties": {
-        "kind": { "type": "string", "enum": ["spdx", "commercial", "custom"] },
-        "spdxExpression": { "type": "string", "minLength": 1, "maxLength": 200 },
-        "url": { "type": "string", "maxLength": 500, "pattern": "^https://\\S+$" }
+        "kind": {
+          "type": "string",
+          "enum": [
+            "spdx",
+            "commercial",
+            "custom"
+          ]
+        },
+        "spdxExpression": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "maxLength": 500,
+          "pattern": "^https://\\S+$"
+        }
       },
       "allOf": [
         {
-          "if": { "properties": { "kind": { "const": "spdx" } } },
-          "then": { "required": ["spdxExpression"] }
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "spdx"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "spdxExpression"
+            ]
+          }
         }
       ]
     },
     "purchase": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["url", "domain"],
+      "required": [
+        "url",
+        "domain"
+      ],
       "properties": {
-        "url": { "type": "string", "maxLength": 500, "pattern": "^https://\\S+$" },
+        "url": {
+          "type": "string",
+          "maxLength": 500,
+          "pattern": "^https://\\S+$"
+        },
         "domain": {
           "type": "string",
           "maxLength": 253,
           "pattern": "^(?!-)[a-z0-9-]{1,63}(?<!-)(\\.(?!-)[a-z0-9-]{1,63}(?<!-))+$"
         },
-        "priceLabel": { "type": "string", "maxLength": 60 }
+        "priceLabel": {
+          "type": "string",
+          "maxLength": 60
+        }
       },
       "description": "Creator-controlled purchase destination. Required for external-commercial items. priceLabel is creator-provided and unverified."
     },
@@ -128,37 +199,116 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "url": { "type": "string", "maxLength": 500, "pattern": "^https://\\S+$" },
-        "status": { "type": "string", "enum": ["active", "maintenance", "deprecated"] }
+        "url": {
+          "type": "string",
+          "maxLength": 500,
+          "pattern": "^https://\\S+$"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "maintenance",
+            "deprecated"
+          ]
+        }
       }
     },
     "deprecation": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["reason"],
+      "required": [
+        "reason"
+      ],
       "properties": {
-        "reason": { "type": "string", "minLength": 1, "maxLength": 500 },
-        "replacement": { "type": "string", "maxLength": 200 }
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "replacement": {
+          "type": "string",
+          "maxLength": 200
+        }
       }
+    },
+    "category": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 40,
+      "pattern": "^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$",
+      "description": "Canonical category ID from taxonomy/v0/taxonomy.json (aliases resolved first). Required by registries at publish time; optional in the manifest for backward compatibility with v0 artifacts."
+    },
+    "componentType": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 40,
+      "pattern": "^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$",
+      "description": "Optional canonical component type from taxonomy/v0/taxonomy.json \u2014 what the thing is (button, dialog), orthogonal to category (what it's for)."
+    },
+    "tags": {
+      "type": "array",
+      "maxItems": 10,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 30,
+        "pattern": "^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
+      },
+      "description": "Creator-defined discovery tags, normalized lowercase-kebab. Subject to moderation; never part of the source digest."
     }
   },
   "allOf": [
     {
-      "if": { "properties": { "sourceModel": { "const": "external-commercial" } } },
-      "then": { "required": ["purchase"] }
+      "if": {
+        "properties": {
+          "sourceModel": {
+            "const": "external-commercial"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "purchase"
+        ]
+      }
     },
     {
       "if": {
         "properties": {
-          "sourceModel": { "enum": ["open-source", "private-team"] }
+          "sourceModel": {
+            "enum": [
+              "open-source",
+              "private-team"
+            ]
+          }
         }
       },
-      "then": { "required": ["source"] }
+      "then": {
+        "required": [
+          "source"
+        ]
+      }
     },
     {
-      "if": { "properties": { "sourceModel": { "const": "open-source" } } },
+      "if": {
+        "properties": {
+          "sourceModel": {
+            "const": "open-source"
+          }
+        }
+      },
       "then": {
-        "properties": { "license": { "properties": { "kind": { "const": "spdx" } } } }
+        "properties": {
+          "license": {
+            "properties": {
+              "kind": {
+                "const": "spdx"
+              }
+            }
+          }
+        }
       }
     }
   ]

@@ -74,5 +74,32 @@
   "valid/item-open-source.json": {
     "schema": "modulora-item",
     "valid": true
+  },
+  "valid/item-with-taxonomy.json": {
+    "schema": "modulora-item",
+    "valid": true,
+    "taxonomy": true
+  },
+  "invalid/item-category-not-kebab.json": {
+    "schema": "modulora-item",
+    "valid": false
+  },
+  "invalid/item-too-many-tags.json": {
+    "schema": "modulora-item",
+    "valid": false
+  },
+  "invalid/item-category-unknown.json": {
+    "schema": "modulora-item",
+    "valid": true,
+    "taxonomy": false
+  },
+  "malicious/item-tag-markup.json": {
+    "schema": "modulora-item",
+    "valid": false
+  },
+  "valid/item-category-alias.json": {
+    "schema": "modulora-item",
+    "valid": true,
+    "taxonomy": true
   }
 }
