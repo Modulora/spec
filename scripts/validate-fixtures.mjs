@@ -8,7 +8,31 @@ const schemas = {
   "modulora-item": JSON.parse(readFileSync(join(root, "schemas/v0/modulora-item.schema.json"), "utf8")),
   attestation: JSON.parse(readFileSync(join(root, "schemas/v0/attestation.schema.json"), "utf8")),
   evidence: JSON.parse(readFileSync(join(root, "schemas/v0/evidence.schema.json"), "utf8")),
+  taxonomy: JSON.parse(readFileSync(join(root, "schemas/v0/taxonomy.schema.json"), "utf8")),
 };
+
+const taxonomy = JSON.parse(readFileSync(join(root, "taxonomy/v0/taxonomy.json"), "utf8"));
+
+/**
+ * Taxonomy resolution per the spec: resolve aliases, then the id must
+ * exist and (for new publishes) not be deprecated. Returns null when the
+ * document declares no category — the manifest field is optional.
+ */
+function taxonomyCheck(doc) {
+  const resolve = (id) => taxonomy.aliases[id] ?? id;
+  const inList = (list, id) => list.some((t) => t.id === id);
+  if (doc.category !== undefined) {
+    const id = resolve(doc.category);
+    if (!inList(taxonomy.categories, id)) return `unknown category "${doc.category}"`;
+    if (taxonomy.deprecated.includes(id)) return `deprecated category "${doc.category}"`;
+  }
+  if (doc.componentType !== undefined) {
+    const id = resolve(doc.componentType);
+    if (!inList(taxonomy.componentTypes, id)) return `unknown componentType "${doc.componentType}"`;
+    if (taxonomy.deprecated.includes(id)) return `deprecated componentType "${doc.componentType}"`;
+  }
+  return null;
+}
 
 const ajv = new Ajv2020.default({ allErrors: true, strict: true, strictRequired: false, strictTypes: false });
 addFormats.default(ajv);
@@ -24,12 +48,34 @@ export function runFixtures() {
     const validate = validators[expectation.schema];
     if (!validate) throw new Error(`unknown schema ${expectation.schema} for ${relPath}`);
     const valid = validate(doc);
+    let pass = valid === expectation.valid;
+    let errors = valid ? [] : (validate.errors ?? []).map((e) => `${e.instancePath} ${e.message}`);
+    // Optional second layer: taxonomy resolution (aliases → existence → deprecation).
+    if (pass && expectation.taxonomy !== undefined) {
+      const taxonomyError = taxonomyCheck(doc);
+      const taxonomyOk = taxonomyError === null;
+      pass = taxonomyOk === expectation.taxonomy;
+      if (!pass) errors = [taxonomyError ?? "expected a taxonomy failure but resolution succeeded"];
+    }
     results.push({
       fixture: relPath,
       schema: expectation.schema,
       expected: expectation.valid,
       actual: valid,
-      pass: valid === expectation.valid,
+      pass,
+      errors,
+    });
+  }
+  // The taxonomy document must satisfy its own schema.
+  {
+    const validate = validators.taxonomy;
+    const valid = validate(taxonomy);
+    results.push({
+      fixture: "taxonomy/v0/taxonomy.json",
+      schema: "taxonomy",
+      expected: true,
+      actual: valid,
+      pass: valid === true,
       errors: valid ? [] : (validate.errors ?? []).map((e) => `${e.instancePath} ${e.message}`),
     });
   }
