@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "0",
+  "itemRef": {
+    "namespace": "northstar",
+    "name": "calendar",
+    "version": "1.2.0"
+  },
+  "releaseDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "records": [
+    {
+      "type": "human-reviewed",
+      "status": "passed",
+      "issuer": "curator:alice",
+      "timestamp": "2026-07-11T18:00:00Z",
+      "subject": {
+        "kind": "release",
+        "value": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "scope": "Listing review"
+    }
+  ]
+}

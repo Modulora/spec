@@ -27,7 +27,7 @@
     "algorithm": "ed25519",
     "value": "QUJDREVG",
     "signedAt": "2026-07-11T18:00:05Z",
-    "payload": "attestationDigest"
+    "payload": "releaseDigest"
   },
   "attestationDigest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
 }

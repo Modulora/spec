@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "0",
+  "itemRef": {
+    "namespace": "northstar",
+    "name": "calendar",
+    "version": "1.2.0"
+  },
+  "releaseDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "records": [
+    {
+      "type": "install-parity",
+      "status": "passed",
+      "issuer": "modulora-platform",
+      "timestamp": "2026-07-11T18:00:00Z",
+      "subject": {
+        "kind": "install-command",
+        "value": "npx shadcn@latest add https://northstar.dev/r/calendar.json"
+      },
+      "coverage": {
+        "command": "npx shadcn@latest add https://northstar.dev/r/calendar.json",
+        "paths": [
+          "components/ui/calendar.tsx"
+        ]
+      },
+      "scope": "Fetched registry output compared file-for-file with this release.",
+      "limitations": "Comparison covers fetched files only; it does not prove runtime safety."
+    }
+  ]
+}

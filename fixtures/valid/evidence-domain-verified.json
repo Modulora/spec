@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "0",
+  "itemRef": {
+    "namespace": "northstar",
+    "name": "calendar",
+    "version": "1.2.0"
+  },
+  "releaseDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "records": [
+    {
+      "type": "domain-verified",
+      "status": "passed",
+      "issuer": "modulora-platform",
+      "timestamp": "2026-07-11T18:00:00Z",
+      "subject": {
+        "kind": "domain",
+        "value": "northstar.dev"
+      },
+      "scope": "DNS TXT challenge for northstar.dev",
+      "limitations": "Proves control at verification time; does not prove source ownership or ongoing domain control.",
+      "expiresAt": "2026-10-11T18:00:00Z"
+    }
+  ]
+}

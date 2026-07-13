@@ -101,5 +101,25 @@
     "schema": "modulora-item",
     "valid": true,
     "taxonomy": true
+  },
+  "valid/evidence-domain-verified.json": {
+    "schema": "evidence",
+    "valid": true
+  },
+  "valid/evidence-install-parity.json": {
+    "schema": "evidence",
+    "valid": true
+  },
+  "invalid/evidence-domain-wrong-subject.json": {
+    "schema": "evidence",
+    "valid": false
+  },
+  "invalid/evidence-human-review-no-limitations.json": {
+    "schema": "evidence",
+    "valid": false
+  },
+  "invalid/attestation-wrong-signed-payload.json": {
+    "schema": "attestation",
+    "valid": false
   }
 }
