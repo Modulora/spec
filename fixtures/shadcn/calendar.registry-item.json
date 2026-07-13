@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar",
+  "type": "registry:component",
+  "title": "Calendar",
+  "description": "A date selection component.",
+  "dependencies": [
+    "date-fns"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "components/ui/calendar.tsx",
+      "type": "registry:component",
+      "content": "export function Calendar() {\n  return <div>Calendar</div>;\n}\n"
+    }
+  ],
+  "meta": {
+    "contentSha256": "0a131f316f3365fb3d34fe0ad0a9fed879bf849422002b938266cbc67f37be8c"
+  }
+}

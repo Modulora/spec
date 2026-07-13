@@ -15,8 +15,12 @@
     "commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
   },
   "shadcnItem": {
+    "schema": "https://ui.shadcn.com/schema/registry-item.json",
+    "name": "calendar",
+    "type": "registry:component",
     "url": "http://evil.example/item.json",
-    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "contentCanonicalization": "modulora-content-v0",
+    "contentSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
   },
   "license": {
     "kind": "spdx",

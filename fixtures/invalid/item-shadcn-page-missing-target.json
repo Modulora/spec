@@ -1,25 +1,29 @@
 {
   "schemaVersion": "0",
   "namespace": "northstar",
-  "name": "pro-table",
+  "name": "calendar",
   "version": "1.2.0",
   "framework": "react",
-  "sourceModel": "external-commercial",
+  "sourceModel": "open-source",
   "visibility": "public",
   "owner": {
     "kind": "organization",
     "identifier": "northstar-ui"
   },
+  "source": {
+    "repository": "https://github.com/northstar-ui/components",
+    "commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
   "shadcnItem": {
     "schema": "https://ui.shadcn.com/schema/registry-item.json",
-    "name": "pro-table",
-    "type": "registry:component",
+    "name": "calendar",
+    "type": "registry:page",
     "url": "https://registry.modulora.dev/r/northstar/calendar/1.2.0/registry-item.json",
     "contentCanonicalization": "modulora-content-v0",
-    "contentSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "contentSha256": "0a131f316f3365fb3d34fe0ad0a9fed879bf849422002b938266cbc67f37be8c"
   },
   "license": {
-    "kind": "commercial",
-    "url": "https://northstar.dev/license"
+    "kind": "spdx",
+    "spdxExpression": "MIT"
   }
 }
