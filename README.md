@@ -6,20 +6,19 @@ Open specifications for Modulora component manifests, provenance, trust evidence
 
 Modulora uses the shadcn registry schema as its first install format. This repository defines companion documents that add creator ownership, source model, immutable release identity, commercial-link metadata, evidence, signatures, and revocation without breaking shadcn compatibility.
 
-Planned artifacts:
+Current artifacts:
 
 ```text
-schemas/
-  modulora-item.schema.json
-  attestation.schema.json
-  evidence.schema.json
-openapi/
-  modulora.openapi.yaml
-fixtures/
-  valid/
-  invalid/
-  malicious/
+schemas/v0/       item, taxonomy, attestation, and evidence schemas
+taxonomy/v0/      canonical categories, component types, aliases
+fixtures/         valid, invalid, and malicious conformance documents
+rfcs/              companion-manifest and scoped-evidence semantics
 ```
+
+Key semantics:
+
+- [`RFC 0001`](./rfcs/0001-companion-manifest.md) — companion manifest model.
+- [`RFC 0002`](./rfcs/0002-scoped-evidence-and-attestations.md) — limitation-aware evidence and the attestation signature boundary.
 
 ## Principles
 
@@ -32,7 +31,7 @@ fixtures/
 
 ## Status
 
-The specification is not yet implemented. See [`CHECKLIST.md`](./CHECKLIST.md).
+The v0 schemas, canonical taxonomy, and conformance fixtures are implemented. Public API contracts remain planned; see [`CHECKLIST.md`](./CHECKLIST.md).
 
 ## Build plan
 

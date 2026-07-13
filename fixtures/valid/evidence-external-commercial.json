@@ -8,18 +8,27 @@
   "releaseDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
   "records": [
     {
-      "type": "owner-verified",
+      "type": "publisher-identity",
       "status": "passed",
       "issuer": "modulora-platform",
       "timestamp": "2026-07-11T18:00:00Z",
-      "scope": "Domain verification for northstar.dev"
+      "scope": "Domain verification for northstar.dev",
+      "subject": {
+        "kind": "publisher",
+        "value": "Domain verification for northstar.dev"
+      }
     },
     {
       "type": "source-not-assessed",
       "status": "asserted",
       "issuer": "modulora-platform",
       "timestamp": "2026-07-11T18:00:00Z",
-      "scope": "Commercial source is not available to Modulora and has not been scanned or reviewed."
+      "scope": "Commercial source is not available to Modulora and has not been scanned or reviewed.",
+      "subject": {
+        "kind": "source",
+        "value": "@northstar/pro-table@1.2.0"
+      },
+      "limitations": "No source artifact was available to inspect, scan, build, or compare."
     }
   ]
 }

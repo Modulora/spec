@@ -8,17 +8,30 @@
   "releaseDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
   "records": [
     {
-      "type": "owner-verified",
+      "type": "publisher-identity",
       "status": "passed",
       "issuer": "modulora-platform",
       "timestamp": "2026-07-11T18:00:00Z",
-      "scope": "GitHub App installation for northstar-ui/components"
+      "scope": "GitHub App installation for northstar-ui/components",
+      "subject": {
+        "kind": "publisher",
+        "value": "GitHub App installation for northstar-ui/components"
+      }
     },
     {
-      "type": "artifact-signed",
+      "type": "content-integrity",
       "status": "passed",
       "issuer": "modulora-platform",
-      "timestamp": "2026-07-11T18:00:05Z"
+      "timestamp": "2026-07-11T18:00:05Z",
+      "subject": {
+        "kind": "release",
+        "value": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "coverage": {
+        "paths": [
+          "src/components/ui/calendar.tsx"
+        ]
+      }
     },
     {
       "type": "secret-scan",
@@ -26,7 +39,16 @@
       "issuer": "modulora-platform",
       "timestamp": "2026-07-11T18:00:10Z",
       "toolVersion": "gitleaks-8.24.0",
-      "limitations": "Pattern-based scan of release files only; cannot prove absence of unknown or obfuscated secrets."
+      "limitations": "Pattern-based scan of release files only; cannot prove absence of unknown or obfuscated secrets.",
+      "subject": {
+        "kind": "release",
+        "value": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "coverage": {
+        "paths": [
+          "src/components/ui/calendar.tsx"
+        ]
+      }
     }
   ]
 }
